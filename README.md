@@ -34,13 +34,19 @@ Several elements (such as the game engine) have been provided by the related cou
 - There is now 1% chance to generate a tile having the same value as the biggest one.
 
 </details>
+<details markdown="block">
+<summary>V1.02</summary>
+
+- A minor re-factoring has been made.
+
+</details>
 
 
 ### Try it!
-You can try the game on [CodeGym](https://codegym.cc/projects/apps/29411).  
+You can try the game on [CodeGym](). [CURRENTLY NOT AVAILABLE]
 
 ### Status
-V1.01 - Completed
+V1.02 - Completed
 
 #### Last update
 29/07/2020

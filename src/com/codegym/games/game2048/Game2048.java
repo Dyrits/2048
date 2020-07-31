@@ -244,55 +244,43 @@ public class Game2048 extends Game {
     private void moveUp() {
         for (int rotation = 0; rotation < 4; rotation ++) {
             if (rotation == 3) { moveLeft(); }
-            rotateClockwise();
+            rotateClockwise(gameField);
         }
     }
 
     private void moveDown() {
         for (int rotation = 0; rotation < 4; rotation ++) {
             if (rotation == 1) { moveLeft(); }
-            rotateClockwise();
+            rotateClockwise(gameField);
         }
     }
 
     private void moveLeft() {
-        boolean merge = false;
-        for (int indexRow = 0; indexRow < gameField.length; indexRow ++) {
-            if (compressRow(gameField[indexRow])) { merge = true; };
-            if (mergeRow(gameField[indexRow])) { merge = true; };
-            if (compressRow(gameField[indexRow])) { merge = true; };
+        boolean hasMoved = false;
+        for (int[] row : gameField) {
+            if (compressRow(row)) { hasMoved = true; }
+            if (mergeRow(row)) { hasMoved = true; }
+            compressRow(row);
         }
-        if (merge) { createNewNumber(); }
+        if (hasMoved) { createNewNumber(); }
     }
 
     private void moveRight() {
         for (int rotation = 0; rotation < 4; rotation ++) {
             if (rotation == 2) { moveLeft(); }
-            rotateClockwise();
+            rotateClockwise(gameField);
         }
     }
 
     /**
-     * Rotates the gameField matrix clockwise by 90 degrees.
+     * Rotates a matrix clockwise by 90 degrees.
      */
-    private void rotateClockwise() {
+    private void rotateClockwise(int[][] matrix) {
         int[][] copy = copyGameField();
         for (int indexRow = 0; indexRow < SIDE; indexRow ++) {
             for (int indexColumn = 0; indexColumn < SIDE; indexColumn ++) {
                 int rotateIndex = SIDE - 1 - indexColumn;
-                gameField[indexRow][indexColumn] = copy[rotateIndex][indexRow];
-            }
-        }
-    }
-
-    /**
-     * Rotates a copy of the gameField matrix clockwise by 90 degrees.
-     */
-    private void rotateClockwise(int[][] copy) {
-        for (int indexRow = 0; indexRow < SIDE; indexRow ++) {
-            for (int indexColumn = 0; indexColumn < SIDE; indexColumn ++) {
-                int rotateIndex = SIDE - 1 - indexColumn;
-                copy[indexRow][indexColumn] = gameField[rotateIndex][indexRow];
+                matrix[indexRow][indexColumn] = copy[rotateIndex][indexRow];
             }
         }
     }
