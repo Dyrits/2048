@@ -49,5 +49,5 @@ You can try the game on [CodeGym](). [CURRENTLY NOT AVAILABLE]
 V1.02 - Completed
 
 #### Last update
-29/07/2020
-(README | 29/07/2020)
+31/07/2020
+(README | 31/07/2020)
